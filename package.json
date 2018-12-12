@@ -10,12 +10,12 @@
     "url": "https://github.com/dexon-foundation/hello-dexon.git"
   },
   "scripts": {
-    "postinstall": "rm -rf node_modules/truffle/node_modules/solc && cp -r node_modules/solc node_modules/truffle/node_modules/; touch secret.js",
-    "compile": "node_modules/.bin/truffle compile"
+    "postinstall": "touch secret.js",
+    "compile": "dexon-truffle compile",
+    "test": "dexon-truffle test --network development"
   },
   "dependencies": {
-    "solc": "github:dexon-foundation/dsolc-js#v0.4.25",
-    "truffle": "^4.1.14",
-    "truffle-hdwallet-provider": "github:trufflesuite/truffle-hdwallet-provider"
+    "@dexon-foundation/truffle": "^4.1.16",
+    "truffle-hdwallet-provider": "^0.0.6"
   }
 }

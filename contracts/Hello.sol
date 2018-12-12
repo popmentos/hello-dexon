@@ -2,6 +2,7 @@ pragma solidity ^0.4.25;
 
 contract Hello {
     uint256 public value;
+
     function update() public {
         value = rand;
     }

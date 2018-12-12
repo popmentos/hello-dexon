@@ -8,7 +8,7 @@
   ],
   "commands": {
     "Compile contracts": "npm run compile",
-    "Deploy contracts on DEXON testnet": "truffle migrate --network=testnet"
+    "Deploy contracts on DEXON testnet": "dexon-truffle migrate --network=testnet"
   },
   "hooks": {
     "post-unpack": "npm install"

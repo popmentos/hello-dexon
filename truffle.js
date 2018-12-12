@@ -22,7 +22,7 @@ module.exports = {
   networks: {
     testnet: {
       provider: new HDWalletProvider(mnemonic,
-        "http://testnet.dexon.org:8545"),
+        "http://testnet.dexon.org:8545", 0, 1, true, "m/44'/237'/0'/0/"),
       network_id: "*"
     }
   }

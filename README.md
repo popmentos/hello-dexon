@@ -11,7 +11,7 @@
 2. `dexon-truffle compile`
 
 ## Test
-1. `npm intall -g @dexon-foundation/ganache-cli`
+1. `npm install -g @dexon-foundation/ganache-cli`
 2. Run local ganache server `dexon-ganache-cli`
 3. `npm run test`
 

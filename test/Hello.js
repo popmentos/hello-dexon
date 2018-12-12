@@ -2,6 +2,7 @@ const Hello = artifacts.require("Hello");
 
 contract('Hello', function(accounts) {
   let HelloContract;
+  let oldRandValue;
 
   it("should deploys Hello contract", async function() {
     HelloContract = await Hello.new();
@@ -19,5 +20,12 @@ contract('Hello', function(accounts) {
   it("should return generated random number", async function() {
     const number = await HelloContract.get();
     assert.notEqual(number.toString(), '0');
+    oldRandValue = number;
+  });
+
+  it("should generate different random number", async function() {
+    await HelloContract.update();
+    const number = await HelloContract.get();
+    assert.notEqual(number, oldRandValue);
   });
 });

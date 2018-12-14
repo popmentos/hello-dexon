@@ -5,10 +5,10 @@
 1. `git clone https://github.com/dexon-foundation/hello-dexon.git`
 2. `cd hello-dexon`
 3. `npm install` or `yarn`
+4. (Optional) Install dexon-truffle globally `npm install -g @dexon-foundation/truffle`
 
 ## Compile
-1. `npm install -g @dexon-foundation/truffle`
-2. `dexon-truffle compile`
+1. `npm run compile` or `dexon-truffle compile`
 
 ## Test
 1. `npm install -g @dexon-foundation/ganache-cli`
@@ -18,4 +18,4 @@
 ## Deploy contract (on DEXON testnet)
 1. Copy `secret.js.sample` to `secret.js`.
 2. Set the `mnemonic` in `secret.js`.
-3. `dexon-truffle migrate --network=testnet`
+3. `npm run migrate` or `dexon-truffle migrate --network=testnet`

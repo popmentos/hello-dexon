@@ -3,7 +3,6 @@
     "README.md",
     ".gitignore",
     "LICENSE",
-    "contracts/Hello.sol",
     "migrations/2_deploy_hello.js"
   ],
   "commands": {

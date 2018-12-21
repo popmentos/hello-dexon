@@ -12,11 +12,21 @@
   "scripts": {
     "postinstall": "touch secret.js",
     "compile": "dexon-truffle compile",
-    "test": "dexon-truffle test --network development",
-    "migrate": "dexon-truffle migrate --network=testnet"
+    "test": "dexon-truffle test --network=development",
+    "migrate:development": "dexon-truffle migrate --network=development --reset",
+    "migrate:testnet": "dexon-truffle migrate --network=testnet --reset",
+    "watch": "webpack-dev-server --network=development",
+    "rpc": "node dexon-ganache"
   },
   "dependencies": {
     "@dexon-foundation/truffle": "^4.1.16",
-    "truffle-hdwallet-provider": "github:trufflesuite/truffle-hdwallet-provider"
+    "truffle-hdwallet-provider": "github:trufflesuite/truffle-hdwallet-provider",
+    "web3": "^1.0.0-beta.37"
+  },
+  "devDependencies": {
+    "@dexon-foundation/ganache-cli": "^6.2.5",
+    "webpack": "^4.28.0",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
   }
 }

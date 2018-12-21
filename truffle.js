@@ -50,10 +50,17 @@ module.exports = {
       network_id: "*"
     },
     development: {
-      network_id: '*',
+      provider: new HDWalletProvider(
+        mnemonic,
+        "http://127.0.0.1:8545",
+        0,
+        1,
+        true,
+        "m/44'/237'/0'/0/",
+      ),
+      network_id: "5777",
       host: "localhost",
       port: 8545,
-      gas: 4712388
-    }
+    },
   }
 };

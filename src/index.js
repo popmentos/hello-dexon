@@ -1,91 +1,129 @@
 const Web3 = require('web3')
 const contractHelloJSON = require('../build/contracts/Hello.json')
 const { networks } = require('../truffle')
-const {
-  network_id,
-} = networks[process.env.network]
-
-const socketEndpoint = 'ws://127.0.0.1:8545'
-
 
 function modifyDomElement({ id, content }) {
   document.getElementById(id).innerHTML = content
 }
 
-function render() {
-  const newDiv = document.createElement('div')
-  const newContent = document.createTextNode('Hello DEXON') 
-  const divWithContent = newDiv.appendChild(newContent)
-  document.body.appendChild(divWithContent)
-}
-
-const initWeb3InstanceWithProvider = async (provider) => {
-  document.getElementById('dekusan').remove()
-  await provider.enable()
-  const web3 = new Web3(provider)
+const startInteractingWithWeb3 = (web3) => {
   let activeAccount = ''
-  const helloContract = new web3.eth.Contract(
-    contractHelloJSON.abi,
-    contractHelloJSON.networks[network_id].address
-  )
+  let netId = ''
   
+  /*
+  * Fetching Wallet Info
+  *
+  * Dekusan Wallet is installed as extension,
+  * therefore, browser is not able to detect
+  * the action when a user switching account 
+  */
   setInterval(() => {
-    web3.eth.getAccounts()
-    .then(([account]) => account)
-    .then(account =>
-      web3.eth.getBalance(account).then(amount => ({
-        amount,
-        account,
-      }))
-    )
-    .then(x => {
-      activeAccount = x.account
+    /* Update Wallet Address */
+    web3
+      .eth
+      .getAccounts()
+      .then(([account]) => {
+        activeAccount = account
+        modifyDomElement({ id: 'wallet-address', content: `Wallet: ${activeAccount}` })
+      })
 
-      modifyDomElement({ id: 'wallet-address', content: `Wallet: ${x.account}` })
-      modifyDomElement({ id: 'wallet-balance', content: `Balance ${x.amount}` })
-      helloContract
-        .methods
-        .value()
-        .call((error, value) => {
-          modifyDomElement({ id: 'current-value', content: `current value ${value}` })
-        })
-    })
+    if(activeAccount) {
+      /* Update Wallet Balance */
+      web3
+        .eth
+        .getBalance(activeAccount).then(amount =>
+          modifyDomElement({ id: 'wallet-balance', content: `Balance ${amount}` })
+        )
+    }
+
+
   }, 1000)
 
-  document
-    .getElementById('update-button')
-    .addEventListener('click', () => {
-      helloContract
-        .methods
-        .update()
-        .send({ from: activeAccount })
+  /* To Use web3 to communicate with RPC */
+  web3
+    .eth
+    .net
+    .getId()
+    .then(network_id => {
+      const contractHandlerHelloWorld = new web3.eth.Contract(
+        contractHelloJSON.abi,
+        contractHelloJSON.networks[network_id].address
+      )
+      
+      /* Update Contract Data with polling */
+      setInterval(() => {
+        contractHandlerHelloWorld
+          .methods
+          .value()
+          .call((error, value) => {
+            modifyDomElement({ id: 'contract-value', content: `Contract Value ${value}` })
+          })  
+      }, 1000);
+
+      /*
+      * If the contract contains the logic of "emit events"
+      * You can
+      * 1. "getPastEvents" to get all the emitted event in the past
+      * 2. "WebsocketProvider" listening event that is emitted
+      */
+      
+      /*
+      * "getPastEvents" to get all the emitted event in the past
+      */
+      contractHandlerHelloWorld
+        .getPastEvents('updateNumber', { fromBlock: 0, toBlock: 'latest' })
+        .then(data => console.log('all past emitted event', '\n',data))
+
+      /*
+      * add WebsocketProvider to web3
+      * start listening to different event
+      */
+      const websocketEndpointMapping = (netId) => ({
+        238: 'ws://testnet.dexon.org:8546',
+        5777: 'ws://localhost:8545'
+      })[netId || 5777]
+      const wsEndpoint = websocketEndpointMapping(network_id)
+      const wsWeb3 = new Web3(new Web3.providers.WebsocketProvider(wsEndpoint))
+      const contractWsHandlerHelloWorld = new wsWeb3.eth.Contract(
+        contractHelloJSON.abi,
+        contractHelloJSON.networks[network_id].address
+      )
+      
+      contractWsHandlerHelloWorld
+        .events
+        .updateNumber({}, (err, { returnValues }) => {
+          console.log('value from socket', '\n',returnValues[0])
+        })
+
+      /* Change the state of the contract */
+      document
+        .getElementById('update-button')
+        .addEventListener('click', () => {
+          contractHandlerHelloWorld
+            .methods
+            .update()
+            .send({ from: activeAccount })
+        })
     })
-  
 }
 
-const initWeb3SocketInstanceWithSocketEndpoint = (endpoint) => {
-  const web3 = new Web3(endpoint)
-  const helloContractWs = new web3.eth.Contract(
-    contractHelloJSON.abi,
-    contractHelloJSON.networks[network_id].address,
-  )
-
-  helloContractWs
-    .getPastEvents('updateNumber', { fromBlock: 0, toBlock: 'latest' })
-    .then(data => console.log('all past emitted event', '\n',data))
-  
-  helloContractWs
-    .events
-    .updateNumber({}, (err, { returnValues }) => {
-      console.log('value from socket', '\n',returnValues[0])
-    })
-}
-
-window.addEventListener('load', function(){
-  render()
+window.addEventListener('load', async() =>{
   if(window.dexon) {
-    initWeb3InstanceWithProvider(window.dexon)
-    initWeb3SocketInstanceWithSocketEndpoint(socketEndpoint)
+    const provider = window.dexon
+
+    /* Ask User's permission with a popup */
+    await provider.enable()
+    
+    /*
+    * Initiate a web3 instance with provider.
+    * In this case, we are using `window.dexon`
+    * window.dexon as a provider is injected 
+    * when you enable Dekusan wallet as extension
+    */
+    const web3 = new Web3()
+    web3.setProvider(window.dexon)
+    startInteractingWithWeb3(web3)
+
   }    
 })
 

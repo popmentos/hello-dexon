@@ -3,7 +3,7 @@ pragma solidity ^0.4.25;
 contract Hello {
     uint256 public value;
 
-    event UpdateNumber(uint256);
+    event UpdateNumber(uint256 _value);
 
     function update() public {
         value = rand;

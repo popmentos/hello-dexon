@@ -10,11 +10,10 @@ const startInteractingWithWeb3 = (web3) => {
   let netId = ''
   
   /*
-  * Fetching Wallet Info
+  * To Fetch Wallet Information
   *
-  * Dekusan Wallet is installed as extension,
-  * therefore, browser is not able to detect
-  * the action when a user switching account 
+  * In order to make things as readable as possible,
+  * we will be using polling here.
   */
   setInterval(() => {
     /* Update Wallet Address */

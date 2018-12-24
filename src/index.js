@@ -34,7 +34,6 @@ const startInteractingWithWeb3 = (web3) => {
         )
     }
 
-
   }, 1000)
 
   /* To Use web3 to communicate with RPC */
@@ -43,6 +42,19 @@ const startInteractingWithWeb3 = (web3) => {
     .net
     .getId()
     .then(network_id => {
+      let net
+      switch (network_id) {
+        case 238:
+          net = 'DEXON Test Network'
+          break
+        case 5777:
+          net = 'Local Network'
+          break
+        default:
+          net = 'Unknown Network'
+      }
+      modifyDomElement({ id: 'wallet-network', content: `Network: ${net}` })
+
       const contractHandlerHelloWorld = new web3.eth.Contract(
         contractHelloJSON.abi,
         contractHelloJSON.networks[network_id].address

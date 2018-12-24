@@ -1,6 +1,5 @@
 const Web3 = require('web3')
 const contractHelloJSON = require('../build/contracts/Hello.json')
-const { networks } = require('../truffle')
 
 function modifyDomElement({ id, content }) {
   document.getElementById(id).innerHTML = content

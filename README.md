@@ -24,7 +24,7 @@
 3. Start WebApp `yarn run watch`
 
 ## Compile
-1. `npm run compile` or `dexon-truffle compile`
+1. `yarn run compile` or `dexon-truffle compile`
 
 ## Test
 1. Run local DEXON-RPC server `yarn run rpc`
@@ -33,4 +33,4 @@
 ## Deploy contract (on DEXON testnet)
 1. Copy `secret.js.sample` to `secret.js`.
 2. Set the `mnemonic` in `secret.js`.
-3. `npm run migrate:testnet` or `dexon-truffle migrate --network=testnet`
+3. `yarn run migrate:testnet` or `dexon-truffle migrate --network=testnet`

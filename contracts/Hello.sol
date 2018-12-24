@@ -3,11 +3,11 @@ pragma solidity ^0.4.25;
 contract Hello {
     uint256 public value;
 
-    event updateNumber(uint256);
+    event UpdateNumber(uint256);
 
     function update() public {
         value = rand;
-        emit updateNumber(value);
+        emit UpdateNumber(value);
     }
 
     function get() public view returns (uint256) {

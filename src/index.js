@@ -71,7 +71,7 @@ const startInteractingWithWeb3 = (web3) => {
       * "getPastEvents" to get all the emitted event in the past
       */
       contractHandlerHelloWorld
-        .getPastEvents('updateNumber', { fromBlock: 0, toBlock: 'latest' })
+        .getPastEvents('UpdateNumber', { fromBlock: 0, toBlock: 'latest' })
         .then(data => console.log('all past emitted event', '\n',data))
 
       /*
@@ -91,7 +91,7 @@ const startInteractingWithWeb3 = (web3) => {
       
       contractWsHandlerHelloWorld
         .events
-        .updateNumber({}, (err, { returnValues }) => {
+        .UpdateNumber({}, (err, { returnValues }) => {
           console.log('value from socket', '\n',returnValues[0])
         })
 

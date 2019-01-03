@@ -9,6 +9,9 @@
     "type": "git",
     "url": "https://github.com/dexon-foundation/hello-dexon.git"
   },
+  "engines": {
+    "node": "^8.10.0"
+  },
   "scripts": {
     "postinstall": "touch secret.js",
     "compile": "dexon-truffle compile",
@@ -27,6 +30,6 @@
     "@dexon-foundation/ganache-cli": "^6.2.5",
     "webpack": "^4.28.0",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10"
+    "webpack-dev-server": "^3.1.14"
   }
 }

@@ -10,6 +10,11 @@
 
 
 ## Requirement/Installation
+
+- Check List
+  - [ ] Node Installed
+  - [ ] Node Version: ^8.10.0 
+
 1. `git clone https://github.com/dexon-foundation/hello-dexon.git`
 2. `cd hello-dexon`
 3. `npm install` or `yarn`
@@ -19,18 +24,18 @@
 7. Set the `mnemonic` in `secret.js`.
 
 ## Getting Started
-1. Run local DEXON-RPC server `yarn run rpc`
-2. Deploy smart contract to DEXON-RPC `yarn run migrate:development`
-3. Start WebApp `yarn run watch`
+1. Run local DEXON-RPC server `npm run rpc`
+2. Deploy smart contract to DEXON-RPC `npm run migrate:development`
+3. Start WebApp `npm run watch`
 
 ## Compile
-1. `yarn run compile` or `dexon-truffle compile`
+1. `npm run compile` or `dexon-truffle compile`
 
 ## Test
-1. Run local DEXON-RPC server `yarn run rpc`
-2. `yarn run test`
+1. Run local DEXON-RPC server `npm run rpc`
+2. `npm run test`
 
 ## Deploy contract (on DEXON testnet)
 1. Copy `secret.js.sample` to `secret.js`.
 2. Set the `mnemonic` in `secret.js`.
-3. `yarn run migrate:testnet` or `dexon-truffle migrate --network=testnet`
+3. `npm run migrate:testnet` or `dexon-truffle migrate --network=testnet`

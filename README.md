@@ -1,8 +1,10 @@
-# Hello DEXON
+# Hello World DEXON
 
-### This is a project that use minimum Contract Code with minimum Javascript Code in order to help you to get started. Within this simple Smart contract, it utilizes DEXON's unbiased on-chain randomness.
+[![Join the chat at https://gitter.im/dexon-foundation/DApp](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/dexon-foundation/DApp)
 
-## What You Can Learn From This Project
+
+This is a project that use minimum Contract Code with minimum Javascript Code in order to help you to get started. Within this simple Smart contract, it utilizes DEXON's unbiased on-chain randomness.
+
 
 - Interaction between RPC node and Smart contract by running DEXON-RPC locally and to deploy Smart contract on it.
 - Once the contract lives on the DEXON-RPC, you would start to use Web3.js as a communicator between frontend and RPC.

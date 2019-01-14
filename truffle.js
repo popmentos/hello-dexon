@@ -54,7 +54,7 @@ module.exports = {
         mnemonic,
         "http://127.0.0.1:8545",
         0,
-        1,
+        2,
         true,
         "m/44'/237'/0'/0/",
       ),

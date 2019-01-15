@@ -21,7 +21,7 @@ module.exports = {
   // to customize your Truffle configuration!
   networks: {
     testnet: {
-      provider: new HDWalletProvider(
+      provider: () => new HDWalletProvider(
         mnemonic,
         /*
         * mnemonic is from BIP39
@@ -50,7 +50,7 @@ module.exports = {
       network_id: "*"
     },
     development: {
-      provider: new HDWalletProvider(
+      provider: () => new HDWalletProvider(
         mnemonic,
         "http://127.0.0.1:8545",
         0,

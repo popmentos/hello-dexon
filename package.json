@@ -24,7 +24,7 @@
   "dependencies": {
     "@dexon-foundation/truffle": "^5.0.12",
     "truffle-hdwallet-provider": "^1.0.2",
-    "web3": "^1.0.0-beta.37"
+    "web3": "1.0.0-beta.37"
   },
   "devDependencies": {
     "@dexon-foundation/ganache-cli": "^6.2.5",

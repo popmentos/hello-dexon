@@ -41,3 +41,17 @@ This is a project that use minimum Contract Code with minimum Javascript Code in
 1. Copy `secret.js.sample` to `secret.js`.
 2. Set the `mnemonic` in `secret.js`.
 3. `npm run migrate:testnet` or `dexon-truffle migrate --network=testnet`
+
+## Steps for new developer 
+Make sure you have free 2GB RAM first. 
+And you have already know how to use DekuSan. then follow the steps
+1. copy secret.js.sample to secret.js and set the variable mnemonic 
+2. Use `npm install` to install package
+3. Use `npm run compile` to compile your smart contracts. 
+4. In another terminal, Use `npm run rpc` to start your rpc server. The server simulate the interface of blockchain in your local environment.
+5. Use `npm run migrate:development` to deploy your compiled smart contracts
+6. Use `npm run watch` to start your web server on local
+7. Your browser has DekuSan and open http://localhost:8080. 
+Then you will show pop-up window to allow dekusan to connect this page.
+The page will show your balance and your wallet (public address)
+

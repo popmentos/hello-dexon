@@ -15,6 +15,7 @@
 var HDWalletProvider = require("truffle-hdwallet-provider");
 var secret = require('./secret');
 var mnemonic = secret.mnemonic;
+const { utils: { toWei } } = require('web3');
 
 module.exports = {
   // See <http://truffleframework.com/docs/advanced/configuration>
@@ -47,7 +48,8 @@ module.exports = {
         * the addresses for Ethereum and DEXON are different.
         */
       ),
-      network_id: "*"
+      network_id: "*",
+      gasPrice: toWei('24', 'gwei'),
     },
     development: {
       provider: () => new HDWalletProvider(

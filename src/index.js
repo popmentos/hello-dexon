@@ -89,7 +89,7 @@ const startInteractingWithWeb3 = (web3) => {
       * start listening to different event
       */
       const websocketEndpointMapping = (netId) => ({
-        238: 'ws://testnet.dexon.org:8546',
+        238: 'wss://testnet-rpc.dexon.org/ws',
         5777: 'ws://localhost:8545'
       })[netId || 5777]
       const wsEndpoint = websocketEndpointMapping(network_id)

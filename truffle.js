@@ -29,7 +29,7 @@ module.exports = {
         * With different derivation path,
         * we can generate different private keys from the same set of mnemonic word
         */
-        "http://testnet.dexon.org:8545",
+        "https://testnet-rpc.dexon.org",
         0,
         1,
         true,

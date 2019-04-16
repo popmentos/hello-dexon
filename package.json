@@ -13,7 +13,7 @@
     "node": "^8.10.0"
   },
   "scripts": {
-    "postinstall": "touch secret.js",
+    "postinstall": "cp secret.js.sample secret.js",
     "compile": "dexon-truffle compile",
     "test": "dexon-truffle test --network=development",
     "migrate:development": "dexon-truffle migrate --network=development --reset",

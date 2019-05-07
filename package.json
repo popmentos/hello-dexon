@@ -30,6 +30,7 @@
     "@dexon-foundation/ganache-cli": "^6.2.5",
     "webpack": "^4.28.0",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.14"
+    "webpack-dev-server": "^3.1.14",
+    "tar": ">=4.4.2"
   }
 }
